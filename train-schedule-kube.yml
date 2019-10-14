@@ -1,18 +1,18 @@
 kind: Service
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 metadata:
   name: train-schedule-service
 spec:
-  type: LoadBalancer
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 31000
   selector:
     app: train-schedule
-  ports:
-  - protocol: TCP
-    port: 8080
 
 ---
 
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: train-schedule-deployment
